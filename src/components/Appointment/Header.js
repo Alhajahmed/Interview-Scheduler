@@ -1,7 +1,6 @@
 import React from 'react';
 
-export default function Appointment(props) {
-  const { time } = props;
+export default function Appointment({ time }) {
   return (
     <header className="appointment__time">
       <h4 className="text--semi-bold">{time}</h4>

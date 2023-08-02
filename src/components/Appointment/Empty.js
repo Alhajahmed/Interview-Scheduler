@@ -1,7 +1,6 @@
 import React from 'react';
 
-export default function Appointment(props) {
-  const { onAdd } = props;
+export default function Appointment({ onAdd }) {
   return (
     <main className="appointment__add">
       <img

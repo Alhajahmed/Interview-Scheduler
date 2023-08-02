@@ -1,7 +1,6 @@
 import React from 'react';
 
-export default function Appointment(props) {
-  const { message } = props;
+export default function Appointment({ message }) {
   return (
     <main className="appointment__card appointment__card--status">
       <img

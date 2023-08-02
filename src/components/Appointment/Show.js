@@ -1,7 +1,6 @@
 import React from 'react';
 
-export default function Appointment(props) {
-  const { onDelete, onEdit, student, interviewer } = props;
+export default function Appointment({ onDelete, onEdit, student, interviewer }) {
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">
