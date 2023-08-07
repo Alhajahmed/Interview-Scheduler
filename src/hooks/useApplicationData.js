@@ -43,9 +43,11 @@ export default function useApplicationData() {
           ...state.appointments,
           [id]: appointment,
         };
+        const days = updateSpots("bookAppointment")
         setState((prev) => ({
           ...prev,
           appointments,
+          days
         }));
         return true;
       })
@@ -67,9 +69,11 @@ export default function useApplicationData() {
     return axios
       .delete(`/api/appointments/${id}`)
       .then(() => {
+        const days = updateSpots()
         setState((prev) => ({
           ...prev,
           appointments,
+          days
         }));
         return true;
       })
@@ -78,6 +82,21 @@ export default function useApplicationData() {
         return false;
       });
   };
+
+  const updateSpots = (requestType) => {
+    const days = state.days.map(day => {
+      if (day.name === state.day) {
+        if (requestType === "bookAppointment") {
+          return { ...day, spots: day.spots - 1 }
+        } else {
+          return { ...day, spots: day.spots + 1 }
+        }
+      } else {
+        return { ...day }
+      }
+    })
+    return days;
+  }
 
   return {
     state,
