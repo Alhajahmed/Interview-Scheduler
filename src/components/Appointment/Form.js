@@ -6,11 +6,13 @@ export default function Form({ onCancel, onSave, interviewers, student, intervie
 
   const [studentState, setStudent] = useState(student || "");
   const [interviewerState, setInterviewer] = useState(interviewer || null);
+  const [error, setError] = useState("");
 
   const handleStudentChange = (event) => {
     setStudent(event.target.value);
   };
   const handleInterviewerChange = (selectedInterviewer) => {
+    console.log("selectedInterviewer", selectedInterviewer);
     setInterviewer(selectedInterviewer);
   };
 
@@ -24,12 +26,22 @@ export default function Form({ onCancel, onSave, interviewers, student, intervie
     onCancel();
   };
 
-  const handleSave = () => {
-    onSave(studentState, interviewerState);
-  };
   const handleSubmit = (event) => {
     event.preventDefault()
   };
+
+  function validate() {
+    if (studentState === "") {
+      setError("Student name cannot be blank");
+      return;
+    }
+    if (interviewerState === null) {
+      setError("Please select an interviewer");
+      return;
+    }
+    setError("");
+    onSave(studentState, interviewerState);
+  }
 
   return (
     <main className="appointment__card appointment__card--create">
@@ -42,8 +54,10 @@ export default function Form({ onCancel, onSave, interviewers, student, intervie
             placeholder="Enter Student Name"
             value={studentState}
             onChange={handleStudentChange}
+            data-testid="student-name-input"
           />
         </form>
+        <section className="appointment__validation">{error}</section>
         <InterviewerList
           interviewers={interviewers}
           value={interviewerState}
@@ -55,7 +69,7 @@ export default function Form({ onCancel, onSave, interviewers, student, intervie
           <Button danger onClick={cancel}>
             Cancel
           </Button>
-          <Button confirm onClick={handleSave}>
+          <Button confirm onClick={validate}>
             Save
           </Button>
         </section>
