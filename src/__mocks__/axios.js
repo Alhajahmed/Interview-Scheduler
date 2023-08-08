@@ -81,5 +81,12 @@ export default {
         data: fixtures.interviewers
       });
     }
+  }),
+  put: jest.fn(url => {
+    // Return a resolved promise with the response data for PUT requests
+    return Promise.resolve({
+      status: 204,
+      statusText: "No Content"
+    });
   })
 };
