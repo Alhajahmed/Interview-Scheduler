@@ -19,11 +19,20 @@ const EDIT = "EDIT";
 const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
-export default function Appointment({ time, interview, bookInterview, cancelInterview, id, interviewers }) {
+export default function Appointment({
+  time,
+  interview,
+  bookInterview,
+  cancelInterview,
+  id,
+  interviewers
+}) {
+  // Use the custom hook "useVisualMode" to manage different visual modes
   const { mode, transition, back } = useVisualMode(
     interview ? SHOW : EMPTY
   );
 
+  // Function to save an appointment
   async function save(name, interviewer) {
     const interview = {
       student: name,
@@ -42,6 +51,7 @@ export default function Appointment({ time, interview, bookInterview, cancelInte
     }
   }
 
+  // Function to handle appointment deletion
   async function onDelete() {
     transition(DELETING, true);
     try {
@@ -56,13 +66,17 @@ export default function Appointment({ time, interview, bookInterview, cancelInte
     }
   }
 
+  // Function to confirm appointment deletion
   function onConfirmDelete() {
     transition(CONFIRM);
   }
+
+  // Function to edit appointment details
   function onEdit() {
     transition(EDIT);
   }
 
+  // Render the Appointment component based on the current mode
   return (
     <article className="appointment" data-testid="appointment">
       <Header time={time} />
@@ -113,7 +127,6 @@ export default function Appointment({ time, interview, bookInterview, cancelInte
           message={"Could not save appointment"}
         />
       )}
-
     </article>
-  )
+  );
 }
