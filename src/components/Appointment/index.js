@@ -83,11 +83,11 @@ export default function Appointment({ time, interview, bookInterview, cancelInte
           onDelete={onDelete}
         />
       )}
-      {mode === SAVING && <Status message="Saving..." />}
-      {mode === DELETING && <Status message="Deleting..." />}
+      {mode === SAVING && <Status message="Saving" />}
+      {mode === DELETING && <Status message="Deleting" />}
       {mode === CONFIRM && (
         <Confirm
-          message="Are you sure you want to delete?"
+          message="Are you sure you would like to delete?"
           onCancel={() => back()}
           onConfirm={onDelete}
         />
