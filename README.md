@@ -20,6 +20,10 @@ Welcome to Interview Scheduler! A dynamic single-page application (SPA) designed
 
 ## Final Product
 
+![Browsing the appointments](https://github.com/Alhajahmed/Interview-Scheduler/blob/master/public/docs/Home.png?raw=true)
+![Booking an appointment](https://github.com/Alhajahmed/Interview-Scheduler/blob/master/public/docs/booking.png?raw=true)
+![Editing existing appointments](https://github.com/Alhajahmed/Interview-Scheduler/blob/master/public/docs/Editing.png?raw=true)
+
 ## Technologies
 
 - [Storybook](https://storybook.js.org/)
